@@ -1,6 +1,0 @@
-frr version 7.3-dev_git
-frr defaults traditional
-hostname router
-!
-line vty
-!
