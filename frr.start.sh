@@ -1,11 +1,22 @@
 #!/bin/bash
+if [[ $(readlink -f $0) =~ ^(.*)/([^/]+)$ ]]; then
+	WORKDIR="${BASH_REMATCH[1]}"
+	CALLED="${BASH_REMATCH[2]}"
+fi
 
 # enable kernel settings
-cp -f 90-frr-settings.conf /etc/sysctl.d/
+cp -f ${WORKDIR}/90-frr-settings.conf /etc/sysctl.d/
 sysctl --system
-#p /etc/sysctl.d/90-frr-settings.conf
 
 # start frr container
-docker run -d -it --net=host --name frr --privileged \
-	-v ${PWD}/frr:/etc/frr \
-frrouting/frr
+if [[ $0 =~ ^[.] ]]; then
+	docker run -d --net=host --privileged \
+		--name frr \
+		-v ${WORKDIR}/frr:/etc/frr \
+	frrouting/frr
+else
+	docker run --net=host --privileged \
+		--name frr \
+		-v ${WORKDIR}/frr:/etc/frr \
+	frrouting/frr
+fi

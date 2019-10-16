@@ -1,0 +1,16 @@
+[Unit]
+Description=FRR Container Service
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+StartLimitBurst=3
+StartLimitInterval=60s
+Restart=always
+ExecStartPre=-/root/router/frr.stop.sh
+ExecStart=/root/router/frr.start.sh
+ExecStop=/root/router/frr.stop.sh
+
+[Install]
+WantedBy=multi-user.target
