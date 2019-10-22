@@ -1,9 +1,8 @@
 #!/bin/bash
 
-#!/bin/bash
-
-SERVICENAME="frr"
-IMAGENAME="frr"
+# parameters
+SERVICENAME={{serviceName}}
+IMAGENAME={{containerImage}}
 
 printf "[frrouting/${IMAGENAME}] stopping\n" 1>&2
 docker rm -f "${SERVICENAME}" 2>/dev/null
