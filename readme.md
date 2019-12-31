@@ -1,4 +1,4 @@
-# Building and FRR docker service on CentOS
+# Building an FRR docker service on CentOS
 ## 1) create centos vm
 **Warning**: Ensure you have created your CentOS VM with the following settings:  
 
