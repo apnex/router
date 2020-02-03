@@ -99,6 +99,7 @@ useradd admin
 passwd admin
 <enter password>
 <repeat password>
+groupadd docker
 usermod -aG docker admin
 ```
 
