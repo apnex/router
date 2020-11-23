@@ -101,7 +101,6 @@ passwd admin
 <repeat password>
 groupadd docker
 usermod -aG docker admin
-su -s admin
 ```
 
 ## 12) setup router CLI prompt for admin user
