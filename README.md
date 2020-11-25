@@ -96,9 +96,7 @@ docker ps
 ## 11) create admin user for router CLI
 ```
 useradd admin
-passwd admin
-<enter password>
-<repeat password>
+echo 'VMware1!' | passwd --stdin admin
 groupadd docker
 usermod -aG docker admin
 ```
