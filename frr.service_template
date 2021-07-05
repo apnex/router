@@ -8,9 +8,10 @@ TimeoutStartSec=0
 StartLimitBurst=3
 StartLimitInterval=60s
 Restart=always
-ExecStartPre=-/root/router/frr.stop.sh
-ExecStart=/root/router/frr.start.sh
-ExecStop=/root/router/frr.stop.sh
+RestartSec=15
+ExecStartPre=-{{shellPath}} {{scriptPath}}/frr.stop.sh
+ExecStart={{shellPath}} {{scriptPath}}/frr.start.sh
+ExecStop={{shellPath}} {{scriptPath}}/frr.stop.sh
 
 [Install]
 WantedBy=multi-user.target

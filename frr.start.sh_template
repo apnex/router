@@ -1,0 +1,18 @@
+# parameters
+SERVICENAME={{serviceName}}
+IMAGENAME={{containerImage}}
+
+# remove old instance
+#docker rm -v $(docker ps -qa -f name="${SERVICENAME}" -f status=exited) 2>/dev/null
+
+# check if running
+RUNNING=$(docker ps -q -f name="${SERVICENAME}")
+if [[ -z "$RUNNING" ]]; then
+	printf "[${SERVICENAME}] not running - now starting\n" 1>&2
+	DOCKERRUN="docker run --rm"
+
+	${DOCKERRUN} --net=host --privileged \
+		-v {{daemonFilePath}}:/etc/frr \
+		--name "${SERVICENAME}" \
+	"${IMAGENAME}"
+fi
